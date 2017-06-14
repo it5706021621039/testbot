@@ -1,20 +1,18 @@
-var express = require('express')
-var bodyParser = require('body-parser')
-var app = express()
-var cors = require('cors')
+const line = require('@line/bot-sdk');
 
-app.use(cors())
-app.use(bodyParser.json())
+const client = new line.Client({
+  channelAccessToken: 'kCz7tuLk8Ox8ptZvYvLn0tB5dIZKkfQwFceq5SVNVlst6gkBC5R6N8pnxEcyp4oZASv1VeAMXO9d7zgx7FHV53qViU7G/4V1lRdTbFvg7aDxHNTFLDZYKBXO2STB6FhrYU07LyObdn3rQ14qbxe1kAdB04t89/1O/w1cDnyilFU='
+});
 
-app.set('port', (process.env.PORT || 4000))
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+const message = {
+  type: 'text',
+  text: 'Hello World!'
+};
 
-
-app.get('/', function (req, res) {
-	res.send('Hello')
-})
-
-app.listen(app.get('port'), function () {
-  console.log('run at port', app.get('port'))
-})
+client.replyMessage('<replyToken>', message)
+  .then(() => {
+    
+  })
+  .catch((err) => {
+    // error handling
+  });
